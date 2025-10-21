@@ -5,7 +5,6 @@ import cn.itcast.wanxinp2pcommon.domain.RestResponse;
 import cn.itcast.wanxinp2pcommon.exception.BusinessException;
 import io.micrometer.core.lang.Nullable;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,13 +14,10 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.logging.Logger;
 
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
-
-    private final static Logger LOGGER = (Logger) LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
@@ -42,7 +38,7 @@ public class GlobalExceptionHandler {
             return new RestResponse<Nullable>(415, "不支持媒体类型");
         }
 
-        log.error("【系统异常】" + e.getMessage());
+        log.error("【系统异常】" , e);
         return  new RestResponse<Nullable>(CommonErrorCode.UNKOWN.getCode(), CommonErrorCode.UNKOWN.getDesc());
     }
 

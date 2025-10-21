@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/commer")
 public class ConsumerController {
 
-    @GetMapping("/haha")
-    public  void  testoo3(){
-        System.out.println("jjjjjj");
+    @GetMapping("/hello")
+    public  String  hello(){
+        return "hello";
     }
 
 }
